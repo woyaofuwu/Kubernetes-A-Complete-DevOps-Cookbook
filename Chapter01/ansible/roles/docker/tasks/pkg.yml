@@ -20,21 +20,21 @@
 
 - name: Add Docker yum repository
   when: ansible_os_family == "RedHat"
+ # shell: yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
   yum_repository:
     name: Docker
     description: Docker Repository
-    file: docker
-    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    file: docker-ce
+    baseurl: https://mirrors.aliyun.com/docker-ce/linux/centos/
     enabled: yes
-    gpgcheck: yes
-    gpgkey: https://yum.dockerproject.org/gpg
 
 - name: Install docker engine (RHEL/CentOS)
   when: ansible_os_family == "RedHat"
+  #shell: yum install docker-ce-18.06.3.ce-3.el7 -y
   yum:
     name: "docker-engine-{{ docker_version }}.*"
     state: present
-
+    
 - name: Install docker engine (Debian/Ubuntu)
   when: ansible_os_family == "Debian"
   apt:

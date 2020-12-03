@@ -20,6 +20,11 @@ set -e
 HOST_NAME=$(hostname)
 OS_NAME=$(awk -F= '/^NAME/{print $2}' /etc/os-release | grep -o "\w*"| head -n 1)
 
+#fix permission issue 20201201
+sed -i 's/^PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+systemctl reload sshd
+
 if [ ${HOST_NAME} == "k8s-m1" ]; then
   case "${OS_NAME}" in
     "CentOS")

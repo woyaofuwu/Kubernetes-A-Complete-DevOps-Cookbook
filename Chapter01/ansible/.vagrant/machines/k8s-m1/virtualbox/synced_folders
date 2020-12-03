@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"C:/java/github/kubernetes/K8S-Complete-DevOps-Cook-w/Chapter01/ansible","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
